@@ -1,14 +1,32 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Slides Demo
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <div class="container">
+
+    <ion-segment [(ngModel)]="mode">
+      <ion-segment-button value="demo">Demo</ion-segment-button>
+      <ion-segment-button value="code">Code</ion-segment-button>
+    </ion-segment>
+
+    <div class="content" [ngSwitch]="mode">
+<ion-slides pager [slidesPerView]="3" *ngSwitchCase="'demo'">
+  <ion-slide *ngFor="let x of xs">
+    <img src="assets/imgs/logo.png">
+    <p>The {{ x + 1 }} / {{ xs.length }} image</p>
+  </ion-slide>
+</ion-slides>
+      <pre *ngSwitchCase="'code'">
+{{ code }}
+      </pre>
+    </div>
+
+  </div>
+
 </ion-content>
